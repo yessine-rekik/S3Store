@@ -23,7 +23,6 @@ export async function refreshTokens(
       secure: config.NODE_ENV === 'dev' ? false : true,
     });
 
-    // the token has already been rotated ==> reuse reuse
     const foundUser = await userService.getUser({
       refreshTokens: oldRefreshToken,
     });
