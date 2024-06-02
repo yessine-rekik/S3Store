@@ -43,10 +43,14 @@ export async function login(req: Request, res: Response, next: NextFunction) {
 
 async function updateTokens(user: IUser, refreshToken: string) {
   const validRefreshTokens = user.refreshTokens.filter((token) =>
-    jwt.verify(token, config.REFRESH_TOKEN_SECRET || '', (error: any) => {
-      if (error) return false;
-      return true;
-    })
+    jwt.verify(
+      token,
+      config.REFRESH_TOKEN_SECRET || '',
+      (error: jwt.VerifyErrors | null) => {
+        if (error) return false;
+        return true;
+      }
+    )
   );
   validRefreshTokens.push(refreshToken);
 

@@ -23,7 +23,7 @@ export async function register(
 
     user.password = await bcrypt.hash(user.password, 10);
 
-    let createdUser = await userService.createUser(user);
+    const createdUser = await userService.createUser(user);
 
     const refreshToken = genereateRefreshToken(createdUser._id.toString());
     await userService.createRefreshToken(

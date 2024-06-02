@@ -30,7 +30,8 @@ export async function refreshTokens(
     jwt.verify(
       oldRefreshToken,
       config.REFRESH_TOKEN_SECRET || '',
-      async (err: any, decoded: any) => {
+      // eslint-disable-next-line
+      async (err: jwt.VerifyErrors | null, decoded: any) => {
         if (err) return res.status(403).send('Invalid Refresh Token');
 
         // Reuse detected --> delete all existing refresh tokens

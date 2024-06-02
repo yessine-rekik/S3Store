@@ -1,5 +1,5 @@
 import winston from 'winston';
-import LokiTransport from 'winston-loki';
+// import LokiTransport from 'winston-loki';
 
 const logger = winston.createLogger({
   level: 'info',
