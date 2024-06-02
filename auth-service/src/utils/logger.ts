@@ -1,12 +1,9 @@
 import winston from 'winston';
+import LokiTransport from 'winston-loki';
+
 
 const logger = winston.createLogger({
   level: 'info',
-
-  format: winston.format.combine(
-    winston.format.timestamp(),
-    winston.format.json()
-  ),
 
   transports: [
     new winston.transports.Console({
@@ -15,8 +12,21 @@ const logger = winston.createLogger({
         winston.format.simple()
       ),
     }),
-    new winston.transports.File({ filename: 'error.log', level: 'error' }),
-    new winston.transports.File({ filename: 'combined.log' }),
+
+    new LokiTransport({
+      host:'http://localhost:3100',
+      json:true,
+      labels:{service: 'auth'},
+      format: winston.format.combine(
+        winston.format.timestamp(),
+        winston.format.json(),
+      )
+    }),
+
+    new winston.transports.File({ filename: 'logs.log', format: winston.format.combine(
+      winston.format.timestamp(),
+      winston.format.json()
+    )}),
   ],
 });
 
