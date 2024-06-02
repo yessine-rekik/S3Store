@@ -23,11 +23,11 @@ jobs:
 
       - name: Run ESLint
         if: github.event_name == 'pull_request'
-        run: npm run lint
+        run: cd auth-service && npm run lint
 
       - name: Run Test Suites
         if: github.event_name == 'pull_request'
-        run: npm run test:ci
+        run: cd auth-service && npm run test:ci
 
       - name: Login to Docker Hub
         if: github.event_name == 'push'
