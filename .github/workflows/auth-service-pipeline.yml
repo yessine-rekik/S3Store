@@ -15,18 +15,31 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-      - name: Run Tests
+      - name: Install dependencies
+        run: cd auth-service && npm install
+
+      - name: Run ESLint
         if: github.event_name == 'pull_request'
-        run: cd auth-service && npm install && npm run test:ci
+        run: npm run lint
 
-      - name: Login to Docker Hub, Build and Push Image
+      - name: Run Test Suites
+        if: github.event_name == 'pull_request'
+        run: npm run test:ci
+
+      - name: Login to Docker Hub
         if: github.event_name == 'push'
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        run: |
-          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-          docker build -t yessinerekik/auth-service ./auth-service
-          docker push yessinerekik/auth-service
+        run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+
+      - name: Build Docker Image
+        if: github.event_name == 'push'
+        run: docker build -t yessinerekik/auth-service ./auth-service
+
+      - name: Push Docker Image
+        if: github.event_name == 'push'
+        run: docker push yessinerekik/auth-service
