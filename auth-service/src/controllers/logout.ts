@@ -12,7 +12,8 @@ export async function logout(req: Request, res: Response, next: NextFunction) {
     jwt.verify(
       refreshToken,
       config.REFRESH_TOKEN_SECRET || '',
-      async (err: any, decoded: any) => {
+      // eslint-disable-next-line
+      async (err: jwt.VerifyErrors | null, decoded: any) => {
         if (err) return res.sendStatus(200);
         await userService.deleteRefreshToken(decoded.id, refreshToken);
       }

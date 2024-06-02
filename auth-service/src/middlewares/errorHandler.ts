@@ -9,4 +9,5 @@ export function errorHandler(
 ) {
   logger.error(err.message);
   res.status(500).send(err.message);
+  next; // to satisfy ESLint
 }
