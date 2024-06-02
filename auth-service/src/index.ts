@@ -4,5 +4,5 @@ import app from './app';
 import('./config/database');
 
 app.listen(config.PORT, () => {
-  console.log(`🚀 Server listening on PORT: ${config.PORT}`);
+  console.log(`🚀 Server is listening on PORT: ${config.PORT}`);
 });
