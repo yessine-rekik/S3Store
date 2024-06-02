@@ -1,14 +1,17 @@
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
+import config from './config';
 
 let mongoServer: MongoMemoryServer;
 
 beforeAll(async () => {
-  process.env.ACCESS_TOKEN_SECRET = 'azerty';
-  process.env.REFRESH_TOKEN_SECRET = 'qwerty';
-
   mongoServer = await MongoMemoryServer.create();
-  await mongoose.connect(mongoServer.getUri());
+
+  config.ACCESS_TOKEN_SECRET = 'azerty';
+  config.REFRESH_TOKEN_SECRET = 'qwerty';
+  config.MONGODB_URI = mongoServer.getUri();
+
+  await mongoose.connect(config.MONGODB_URI);
 });
 
 afterAll(async () => {

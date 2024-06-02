@@ -1,6 +1,11 @@
 import 'dotenv/config';
 
-const requiredEnvVars = ['PORT', 'MONGODB_URI','ACCESS_TOKEN_SECRET','REFRESH_TOKEN_SECRET'] ;
+const requiredEnvVars = [
+  'PORT',
+  'MONGODB_URI',
+  'ACCESS_TOKEN_SECRET',
+  'REFRESH_TOKEN_SECRET',
+];
 
 export function checkEnvVars() {
   const unsetEnvVars = requiredEnvVars.filter(
@@ -17,8 +22,6 @@ export function checkEnvVars() {
     process.exit(1);
   }
 }
-
-checkEnvVars();
 
 export default {
   NODE_ENV: process.env.NODE_ENV || 'dev',
