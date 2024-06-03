@@ -46,7 +46,6 @@ export async function register(
         username: createdUser.username,
       });
   } catch (err) {
-    console.log(err);
     next(err);
   }
 }
