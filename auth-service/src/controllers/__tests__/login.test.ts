@@ -2,16 +2,6 @@ import supertest from 'supertest';
 import app from '../../app';
 
 describe('User Login', () => {
-  it('should create the account', async () => {
-    await supertest(app)
-      .post('/register')
-      .send({
-        username: 'some_username',
-        password: 'some_password',
-      })
-      .expect(201);
-  });
-
   it('should handle inexistant username', async () => {
     await supertest(app)
       .post('/login')

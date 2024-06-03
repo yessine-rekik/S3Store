@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import config from '../config';
-import userService from '../services/user.service';
+import userRepository from '../repositories/user.repository';
 
 export async function logout(req: Request, res: Response, next: NextFunction) {
   try {
@@ -15,7 +15,7 @@ export async function logout(req: Request, res: Response, next: NextFunction) {
       // eslint-disable-next-line
       async (err: jwt.VerifyErrors | null, decoded: any) => {
         if (err) return res.sendStatus(200);
-        await userService.deleteRefreshToken(decoded.id, refreshToken);
+        await userRepository.deleteRefreshToken(decoded.id, refreshToken);
       }
     );
 

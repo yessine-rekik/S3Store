@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
-import userService from '../services/user.service';
+import userRepository from '../repositories/user.repository';
 import { IUser } from '../interfaces/user.interface';
 import {
   genereateAccessToken,
@@ -16,17 +16,17 @@ export async function register(
   try {
     const user: IUser = req.body;
 
-    const userExists = await userService.getUser({
+    const userExists = await userRepository.getUser({
       username: req.body.username,
     });
     if (userExists) return res.status(409).send('Username already exists');
 
     user.password = await bcrypt.hash(user.password, 10);
 
-    const createdUser = await userService.createUser(user);
+    const createdUser = await userRepository.createUser(user);
 
     const refreshToken = genereateRefreshToken(createdUser._id.toString());
-    await userService.createRefreshToken(
+    await userRepository.createRefreshToken(
       createdUser._id.toString(),
       refreshToken
     );

@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
-import userService from '../services/user.service';
+import userRepository from '../repositories/user.repository';
 import {
   genereateAccessToken,
   genereateRefreshToken,
@@ -23,7 +23,7 @@ export async function refreshTokens(
       secure: config.NODE_ENV === 'dev' ? false : true,
     });
 
-    const foundUser = await userService.getUser({
+    const foundUser = await userRepository.getUser({
       refreshTokens: oldRefreshToken,
     });
 
@@ -36,7 +36,7 @@ export async function refreshTokens(
 
         // Reuse detected --> delete all existing refresh tokens
         if (!foundUser) {
-          await userService.updateUser(decoded.id, { refreshTokens: [] });
+          await userRepository.updateUser(decoded.id, { refreshTokens: [] });
           return res
             .status(403)
             .send(
@@ -46,7 +46,7 @@ export async function refreshTokens(
 
         // generate new set of tokens and update DB
         const newRefreshToken = genereateRefreshToken(decoded.id);
-        await userService.updateRefreshToken(
+        await userRepository.updateRefreshToken(
           decoded.id,
           oldRefreshToken,
           newRefreshToken

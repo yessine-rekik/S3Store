@@ -2,7 +2,7 @@ import { Types } from 'mongoose';
 import { IUser } from '../interfaces/user.interface';
 import User from '../models/user.model';
 
-class UserService {
+class UserRepository {
   async createUser(userData: Partial<IUser>) {
     return User.create(userData);
   }
@@ -58,4 +58,4 @@ class UserService {
   }
 }
 
-export default new UserService();
+export default new UserRepository();
