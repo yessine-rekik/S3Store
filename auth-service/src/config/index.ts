@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import logger from '../utils/logger';
 
 const requiredEnvVars = [
   'PORT',
@@ -13,12 +14,11 @@ export function checkEnvVars() {
   );
 
   if (unsetEnvVars.length > 0) {
-    console.error(
+    logger.error(
       `Error: Required environment variables are not set:\n${unsetEnvVars.join(
         '\n'
-      )}`
+      )}\nThe proccess will exit.`
     );
-    console.error('The proccess will exit.');
     process.exit(1);
   }
 }
