@@ -58,7 +58,7 @@ jobs:
 
       - name: Set IMAGE_TAG
         id: image_tag
-        run: echo "IMAGE_TAG=$([[ '${{ github.ref_name }}' == 'master' ]] && echo '${{ github.sha }}' || echo 'preprod-${{ github.sha }}')" >> $GITHUB_ENV
+        run: echo "IMAGE_TAG=$([[ '${{ github.ref_name }}' == 'master' ]] && echo '${{ github.sha }}' || echo 'staging-${{ github.sha }}')" >> $GITHUB_ENV
 
       - name: Build Docker Image
         run: docker build -t yessinerekik/auth-service:${{ env.IMAGE_TAG }} ./auth-service
