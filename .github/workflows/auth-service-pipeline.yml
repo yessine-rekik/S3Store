@@ -9,7 +9,7 @@ on:
       - master
     paths:
       - 'auth-service/**'
-      - '.github/wokflows/auth-service-pipeline.yml'
+      - '.github/workflows/auth-service-pipeline.yml'
 
 jobs:
   build:
