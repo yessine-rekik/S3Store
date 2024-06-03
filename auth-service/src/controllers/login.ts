@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import userService from '../services/user.service';
+import userRepository from '../repositories/user.repository';
 import {
   genereateAccessToken,
   genereateRefreshToken,
@@ -12,7 +12,7 @@ import { IUser } from '../interfaces/user.interface';
 export async function login(req: Request, res: Response, next: NextFunction) {
   try {
     const { username, password } = req.body;
-    const user = await userService.getUser({ username });
+    const user = await userRepository.getUser({ username });
 
     if (!user) return res.status(401).send({ username: true });
 
@@ -54,7 +54,7 @@ async function updateTokens(user: IUser, refreshToken: string) {
   );
   validRefreshTokens.push(refreshToken);
 
-  await userService.updateUser(user._id, {
+  await userRepository.updateUser(user._id, {
     refreshTokens: validRefreshTokens,
   });
 }

@@ -6,7 +6,7 @@ describe('User Registration', () => {
     const response = await supertest(app)
       .post('/register')
       .send({
-        username: 'some_username',
+        username: 'unused_username',
         password: 'some_password',
       })
       .expect(201);

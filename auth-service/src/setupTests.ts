@@ -1,6 +1,8 @@
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
 import config from './config';
+import bcrypt from 'bcryptjs';
+import userRepository from './repositories/user.repository';
 
 let mongoServer: MongoMemoryServer;
 
@@ -12,6 +14,11 @@ beforeAll(async () => {
   config.MONGODB_URI = mongoServer.getUri();
 
   await mongoose.connect(config.MONGODB_URI);
+
+  await userRepository.createUser({
+    username: 'some_username',
+    password: await bcrypt.hash('some_password', 10),
+  });
 });
 
 afterAll(async () => {
