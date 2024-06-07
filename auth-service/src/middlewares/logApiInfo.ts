@@ -8,7 +8,9 @@ export function logApiInfo(req: Request, res: Response, next: NextFunction) {
 
   res.on('finish', () => {
     const responseTime = Date.now() - start;
-    logger.info(`${req.method}: ${url} - ${responseTime} ms`);
+    logger.info(
+      `${req.method}: ${url} - ${res.statusCode} - ${responseTime} ms`
+    );
   });
 
   next();
