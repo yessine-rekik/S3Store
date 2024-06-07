@@ -29,7 +29,7 @@ export async function refreshTokens(
 
     jwt.verify(
       oldRefreshToken,
-      config.REFRESH_TOKEN_SECRET || '',
+      config.REFRESH_TOKEN_SECRET,
       // eslint-disable-next-line
       async (err: jwt.VerifyErrors | null, decoded: any) => {
         if (err) return res.status(403).send('Invalid Refresh Token');
