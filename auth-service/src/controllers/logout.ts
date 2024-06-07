@@ -11,7 +11,7 @@ export async function logout(req: Request, res: Response, next: NextFunction) {
     // Remove the refresh token from the DB
     jwt.verify(
       refreshToken,
-      config.REFRESH_TOKEN_SECRET || '',
+      config.REFRESH_TOKEN_SECRET,
       // eslint-disable-next-line
       async (err: jwt.VerifyErrors | null, decoded: any) => {
         if (err) return res.sendStatus(200);
