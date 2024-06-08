@@ -1,10 +1,14 @@
 name: Storage Service Pipeline
 
 on:
-  push:
+  pull_request:
     paths:
       - 'storage-service/**'
-  pull_request:
+
+  push:
+    branches:
+      - master
+      - staging
     paths:
       - 'storage-service/**'
 
