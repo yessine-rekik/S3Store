@@ -1,8 +1,12 @@
 name: Auth Service Pipeline
 
 on:
-  paths:
-    - 'auth-service/**'
+  push:
+    paths:
+      - 'auth-service/**'
+  pull_request:
+    paths:
+      - 'auth-service/**'
 
 jobs:
   call-reusable-pipeline:
