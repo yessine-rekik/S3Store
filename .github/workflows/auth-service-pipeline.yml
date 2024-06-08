@@ -1,10 +1,14 @@
 name: Auth Service Pipeline
 
 on:
-  push:
+  pull_request:
     paths:
       - 'auth-service/**'
-  pull_request:
+
+  push:
+    branches:
+      - master
+      - staging
     paths:
       - 'auth-service/**'
 
