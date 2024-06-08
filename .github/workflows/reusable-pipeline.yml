@@ -6,15 +6,6 @@ on:
       service-folder:
         required: true
         type: string
-  pull_request:
-    paths:
-      - '${{ inputs.service-folder }}/**'
-  push:
-    branches:
-      - master
-      - staging
-    paths:
-      - '${{ inputs.service-folder }}/**'
 
 jobs:
   build:

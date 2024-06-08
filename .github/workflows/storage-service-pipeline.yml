@@ -1,8 +1,12 @@
 name: Storage Service Pipeline
 
 on:
-  paths:
-    - 'storage-service/**'
+  push:
+    paths:
+      - 'storage-service/**'
+  pull_request:
+    paths:
+      - 'storage-service/**'
 
 jobs:
   call-reusable-pipeline:
