@@ -1,7 +1,6 @@
-import Link from 'next/link';
 import useAuth from '../hooks/useAuth';
 import useLogout from '../hooks/useLogout';
-import { AppBar, Button, Toolbar } from '@mui/material';
+import { AppBar, Toolbar } from '@mui/material';
 import {
   Description,
   Home,

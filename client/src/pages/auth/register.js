@@ -5,7 +5,6 @@ import { Button, Paper, TextField } from '@mui/material';
 import { register } from '../../apis/apis';
 import useAlert from '../../hooks/useAlert';
 import Link from 'next/link';
-import { Palette } from '@mui/icons-material';
 
 function Register() {
   const [credentials, setCredentials] = useState({
