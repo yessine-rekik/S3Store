@@ -1,7 +1,6 @@
-import Link from 'next/link';
 import useAuth from '../hooks/useAuth';
 import useLogout from '../hooks/useLogout';
-import { AppBar, Button, Toolbar } from '@mui/material';
+import { AppBar, Toolbar } from '@mui/material';
 import {
   Description,
   Home,
@@ -9,6 +8,7 @@ import {
   Logout,
   PersonAdd,
 } from '@mui/icons-material';
+import NavbarItem from './NavbarItem';
 
 const Header = () => {
   const { user } = useAuth();
@@ -17,40 +17,31 @@ const Header = () => {
   return (
     <AppBar position="static" style={{ backgroundColor: '#29335c' }}>
       <Toolbar style={{ justifyContent: 'space-between' }}>
-        <Link href="/" style={{ textDecoration: 'none', color: 'white' }}>
-          <Button color="inherit" startIcon={<Home />}>
-            Home
-          </Button>
-        </Link>
-        <Link href="/files" style={{ textDecoration: 'none', color: 'white' }}>
-          <Button color="inherit" startIcon={<Description />}>
-            Files
-          </Button>
-        </Link>
+        <NavbarItem href={'/'} text={'Home'} Icon={Home} />
+        <NavbarItem href={'/files'} text={'Files'} Icon={Description} />
         {!user && (
           <>
-            <Link
-              href="/auth/login"
-              style={{ textDecoration: 'none', color: 'white' }}
-            >
-              <Button color="inherit" startIcon={<Login />}>
-                Login
-              </Button>
-            </Link>
-            <Link
-              href="/auth/register"
-              style={{ textDecoration: 'none', color: 'white' }}
-            >
-              <Button color="inherit" startIcon={<PersonAdd />}>
-                Register
-              </Button>
-            </Link>
+            <NavbarItem href={'/auth/login'} text={'Login'} Icon={Login} />
+            <NavbarItem
+              href={'/auth/register'}
+              text={'Register'}
+              Icon={PersonAdd}
+            />
           </>
         )}
         {user && (
-          <Button color="inherit" startIcon={<Logout />} onClick={logout}>
-            Logout
-          </Button>
+          <div
+            onClick={logout}
+            style={{
+              display: 'flex',
+              gap: '0.5rem',
+              alignItems: 'center',
+              cursor: 'pointer',
+            }}
+          >
+            <Logout />
+            <h4>Logout</h4>
+          </div>
         )}
       </Toolbar>
     </AppBar>

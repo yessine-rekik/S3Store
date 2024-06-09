@@ -1,6 +1,8 @@
 const Footer = () => {
   return (
-    <footer style={{ backgroundColor: '#232f3e', color: 'white' }}>
+    <footer
+      style={{ backgroundColor: '#232f3e', color: 'white', minHeight: '20vh' }}
+    >
       <div style={{ padding: '3rem' }}>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et

@@ -2,7 +2,19 @@ import React from 'react';
 
 function Body({ children }) {
   return (
-    <div style={{ padding: '5rem', backgroundColor: 'white' }}>{children}</div>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        padding: '5rem',
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignContent: 'center',
+        minHeight: '80vh',
+      }}
+    >
+      {children}
+    </div>
   );
 }
 
