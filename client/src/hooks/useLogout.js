@@ -1,4 +1,4 @@
-import { logout as logoutApi } from '../apis/apis';
+import { logout as logoutApi } from '../apis/auth.apis';
 import useAlert from './useAlert';
 import useAuth from './useAuth';
 
