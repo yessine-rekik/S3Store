@@ -8,28 +8,35 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 import darkTheme from '../themes/darkTheme';
 import lightTheme from '../themes/lightTheme';
 import ToggleTheme from '../components/ToggleTheme';
+import Head from 'next/head';
 
 function MyApp({ Component, pageProps }) {
   const [darkMode, setDarkMode] = useState(true);
 
   return (
-    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
-      <CssBaseline />
+    <>
+      <Head>
+        <link rel="icon" href="/favicon-16x16.png" />
+      </Head>
+      <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+        <CssBaseline />
 
-      <AuthProvider>
-        <AlertProvider>
-          <Header />
-          <ToggleTheme
-            darkMode={darkMode}
-            handleToggle={() => setDarkMode((darkMode) => !darkMode)}
-          />
-          <Body>
-            <Component {...pageProps} />
-          </Body>
-        </AlertProvider>
-      </AuthProvider>
-      <Footer />
-    </ThemeProvider>
+        <AuthProvider>
+          <AlertProvider>
+            <Header />
+            <ToggleTheme
+              darkMode={darkMode}
+              handleToggle={() => setDarkMode((darkMode) => !darkMode)}
+            />
+            <Body>
+              <Component {...pageProps} />
+            </Body>
+          </AlertProvider>
+        </AuthProvider>
+
+        <Footer />
+      </ThemeProvider>
+    </>
   );
 }
 
