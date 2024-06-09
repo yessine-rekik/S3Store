@@ -1,0 +1,20 @@
+name: Client Pipeline
+
+on:
+  pull_request:
+    paths:
+      - 'client/**'
+
+  push:
+    branches:
+      - master
+      - staging
+    paths:
+      - 'client/**'
+
+jobs:
+  call-reusable-pipeline:
+    uses: ./.github/workflows/reusable-pipeline.yml
+    with:
+      service-folder: 'client'
+    secrets: inherit
