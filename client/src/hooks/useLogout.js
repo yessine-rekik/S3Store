@@ -12,7 +12,6 @@ const useLogout = () => {
       await axios.post('/logout');
     } catch (err) {
       showAlert(err.message);
-      console.log(err);
     }
   };
 

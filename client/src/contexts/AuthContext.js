@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
         const response = await axios.post('/refresh-token');
         setUser(response.data);
       } catch (err) {
-        console.log(err);
+        alert(err.message);
       }
     };
 

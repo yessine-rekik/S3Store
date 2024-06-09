@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 import { useRouter } from 'next/router';
-import { register } from './apis';
+import { Button, TextField } from '@mui/material';
+import { register } from '../../apis/apis';
 import useAlert from '../../hooks/useAlert';
+import Link from 'next/link';
 
 function Register() {
   const [credentials, setCredentials] = useState({
@@ -29,33 +31,50 @@ function Register() {
       router.replace(router.query.from || '/');
     } catch (err) {
       showAlert(err.message);
-      console.log(err);
     }
   };
 
   return (
-    <>
+    <div
+      style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+    >
       <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
-        <input
+
+      <form
+        onSubmit={handleSubmit}
+        style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}
+      >
+        <TextField
           type="text"
           name="username"
+          label="Username"
           value={credentials.username}
           onChange={handleChange}
         />
-        <br />
-        <br />
-        <input
+        <TextField
           type="password"
           name="password"
+          label="Password"
           value={credentials.password}
           onChange={handleChange}
         />
-        <br />
-        <br />
-        <button type="submit">Submit</button>
+        <Button
+          style={{ marginTop: '1rem' }}
+          type="submit"
+          variant="contained"
+          fullWidth
+        >
+          Register
+        </Button>
+
+        <Link
+          style={{ marginLeft: '10rem', marginTop: '1rem' }}
+          href="/auth/login"
+        >
+          Already have an account? Login
+        </Link>
       </form>
-    </>
+    </div>
   );
 }
 

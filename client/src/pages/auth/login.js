@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 import { useRouter } from 'next/router';
-import { login } from './apis';
+import { login } from '../../apis/apis';
 import useAlert from '../../hooks/useAlert';
+import { Button, TextField } from '@mui/material';
+import Link from 'next/link';
 
 function Login() {
   const [credentials, setCredentials] = useState({
@@ -32,28 +34,50 @@ function Login() {
   };
 
   return (
-    <>
+    <div
+      style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+    >
       <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <input
+
+      <form
+        onSubmit={handleSubmit}
+        style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}
+      >
+        <TextField
           type="text"
           name="username"
+          label="Username"
           value={credentials.username}
           onChange={handleChange}
         />
-        <br />
-        <br />
-        <input
+        <TextField
           type="password"
           name="password"
+          label="Password"
           value={credentials.password}
           onChange={handleChange}
         />
-        <br />
-        <br />
-        <button type="submit">Submit</button>
+        <Button
+          style={{ marginTop: '1rem' }}
+          type="submit"
+          variant="contained"
+          fullWidth
+        >
+          Login
+        </Button>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            gap: '3rem',
+            marginTop: '1rem',
+          }}
+        >
+          <Link href="#">Forgot password?</Link>
+          <Link href="/auth/register">Don&apos;t have an account? Sign Up</Link>
+        </div>
       </form>
-    </>
+    </div>
   );
 }
 

@@ -1,4 +1,4 @@
-import axios from '../../config/axios';
+import axios from '../config/axios';
 
 export async function login(credentials) {
   return await axios.post('/login', credentials);

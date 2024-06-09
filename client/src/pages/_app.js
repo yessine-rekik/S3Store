@@ -1,3 +1,4 @@
+import Body from '../components/Body';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { AlertProvider } from '../contexts/AlertContext';
@@ -9,7 +10,9 @@ function MyApp({ Component, pageProps }) {
       <AuthProvider>
         <AlertProvider>
           <Header />
-          <Component {...pageProps} />
+          <Body>
+            <Component {...pageProps} />
+          </Body>
         </AlertProvider>
       </AuthProvider>
       <Footer />
