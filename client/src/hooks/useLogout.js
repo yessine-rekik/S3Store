@@ -1,4 +1,4 @@
-import axios from '../config/axios';
+import { logout as logoutApi } from '../apis/apis';
 import useAlert from './useAlert';
 import useAuth from './useAuth';
 
@@ -9,7 +9,7 @@ const useLogout = () => {
   const logout = async () => {
     setUser(null);
     try {
-      await axios.post('/logout');
+      await logoutApi();
     } catch (err) {
       showAlert(err.message);
     }
