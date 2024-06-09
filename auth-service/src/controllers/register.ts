@@ -7,6 +7,7 @@ import {
   genereateRefreshToken,
 } from '../utils/generateTokens';
 import config from '../config';
+import mongoose from 'mongoose';
 
 export async function register(
   req: Request,
@@ -46,6 +47,9 @@ export async function register(
         username: createdUser.username,
       });
   } catch (err) {
+    if (err instanceof mongoose.Error.ValidationError)
+      return res.status(400).send(err.message);
+
     next(err);
   }
 }
