@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint ./src",
-    "test": "echo 'Dummy test passed!'"
+    "test:ci": "echo 'Dummy test passed!'"
   },
   "keywords": [],
   "author": "",
