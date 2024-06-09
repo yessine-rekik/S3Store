@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 import { useRouter } from 'next/router';
-import { Button, TextField } from '@mui/material';
+import { Button, Paper, TextField } from '@mui/material';
 import { register } from '../../apis/apis';
 import useAlert from '../../hooks/useAlert';
 import Link from 'next/link';
+import { Palette } from '@mui/icons-material';
 
 function Register() {
   const [credentials, setCredentials] = useState({
@@ -35,46 +36,58 @@ function Register() {
   };
 
   return (
-    <div
-      style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
-    >
-      <h2>Register</h2>
-
-      <form
-        onSubmit={handleSubmit}
-        style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}
+    <Paper style={{ borderRadius: '1rem' }}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          padding: '2rem',
+        }}
       >
-        <TextField
-          type="text"
-          name="username"
-          label="Username"
-          value={credentials.username}
-          onChange={handleChange}
-        />
-        <TextField
-          type="password"
-          name="password"
-          label="Password"
-          value={credentials.password}
-          onChange={handleChange}
-        />
-        <Button
-          style={{ marginTop: '1rem' }}
-          type="submit"
-          variant="contained"
-          fullWidth
-        >
-          Register
-        </Button>
+        <h2>Register</h2>
 
-        <Link
-          style={{ marginLeft: '10rem', marginTop: '1rem' }}
-          href="/auth/login"
+        <form
+          onSubmit={handleSubmit}
+          style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}
         >
-          Already have an account? Login
-        </Link>
-      </form>
-    </div>
+          <TextField
+            type="text"
+            name="username"
+            label="Username"
+            value={credentials.username}
+            onChange={handleChange}
+          />
+          <TextField
+            type="password"
+            name="password"
+            label="Password"
+            value={credentials.password}
+            onChange={handleChange}
+          />
+          <Button
+            style={{ marginTop: '1rem' }}
+            type="submit"
+            variant="contained"
+            fullWidth
+          >
+            Register
+          </Button>
+
+          <Link
+            style={{
+              marginLeft: '10rem',
+              marginTop: '1rem',
+              textDecoration: 'underline',
+              color: 'inherit',
+            }}
+            href="/auth/login"
+          >
+            Already have an account? Login
+          </Link>
+        </form>
+      </div>
+    </Paper>
   );
 }
 
