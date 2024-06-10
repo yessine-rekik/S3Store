@@ -1,11 +1,9 @@
 import { useEffect } from 'react';
 import axios from '../config/axios';
-import useRefreshToken from './useRefreshToken';
 import useAuth from './useAuth';
 
 function useAxiosPrivate() {
-  const refresh = useRefreshToken();
-  const { user } = useAuth();
+  const { user, refreshToken } = useAuth();
 
   useEffect(() => {
     // If refresh token is not present in the cookie, reject request
@@ -26,7 +24,7 @@ function useAxiosPrivate() {
         if (err?.response?.status === 401 && !prevReq.sent) {
           prevReq.sent = true;
 
-          const { accessToken: newAccessToken } = await refresh();
+          const { accessToken: newAccessToken } = await refreshToken();
           prevReq.headers.Authorization = `Bearer ${newAccessToken}`;
           return axios(prevReq);
         }
@@ -38,7 +36,7 @@ function useAxiosPrivate() {
       axios.interceptors.request.eject(requestInterceptor);
       axios.interceptors.response.eject(responseInterceptor);
     };
-  }, [user, refresh]);
+  }, [user, refreshToken]);
 
   return axios;
 }

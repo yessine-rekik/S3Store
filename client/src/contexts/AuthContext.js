@@ -1,26 +1,31 @@
 import { createContext, useEffect, useState } from 'react';
-import axios from '../config/axios';
+import { refreshToken as refreshTokenApi } from '../apis/auth.apis';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const refreshAccessToken = async () => {
-      try {
-        const response = await axios.post('/refresh-token');
-        setUser(response.data);
-      } catch (err) {
-        alert(err.message);
-      }
-    };
-
-    refreshAccessToken();
+    refreshToken();
   }, []);
 
+  const refreshToken = async () => {
+    try {
+      const res = await refreshTokenApi();
+      const user = res.data;
+      setUser(res.data);
+      return user;
+    } catch (err) {
+      setUser(null);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ user, setUser }}>
+    <AuthContext.Provider value={{ user, setUser, isLoading, refreshToken }}>
       {children}
     </AuthContext.Provider>
   );
