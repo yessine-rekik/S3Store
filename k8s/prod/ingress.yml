@@ -1,0 +1,39 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+
+metadata:
+  name: ingress-service
+  namespace: prod
+
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: s3store.com
+      http:
+        paths:
+          - path: /?(.*) # this will avoid changing the mimetype when serving
+            pathType: Prefix
+            backend:
+              service:
+                name: client-srv
+                port:
+                  number: 3000
+
+          - path: /api/auth/(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: auth-srv
+                port:
+                  number: 4000
+
+          # - path: /api/storage/(.*)
+          #   pathType: ImplementationSpecific
+          #   backend:
+          #     service:
+          #       name: storage-srv
+          #       port:
+          #         number: 4000
