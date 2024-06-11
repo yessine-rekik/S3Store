@@ -1,0 +1,2 @@
+namespace: prod
+host: s3store.com
