@@ -33,6 +33,7 @@ resource "helm_release" "ingress-nginx" {
   chart            = "ingress-nginx"
   namespace        = "ingress-nginx"
   create_namespace = true
+  wait             = false
 }
 
 resource "helm_release" "kube-prometheus-stack" {
