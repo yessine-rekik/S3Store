@@ -30,21 +30,21 @@ spec:
             - name: ACCESS_TOKEN_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: auth-secrets
+                  name: auth
                   key: jwt-access-secret
 
             - name: REFRESH_TOKEN_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: auth-secrets
+                  name: auth
                   key: jwt-refresh-secret
           resources:
             requests:
-              memory: "128Mi"
-              cpu: "250m"
+              memory: "64Mi"
+              cpu: "100m"
             limits:
-              memory: "256Mi"
-              cpu: "500m"
+              memory: "64Mi"
+              cpu: "100m"
 
 ---
 ################### Service ###################
@@ -76,20 +76,24 @@ data:
   MONGODB_URI: mongodb://auth-database:27017/auth
 
 ---
-# apiVersion: v1
-# kind: Secret
-# metadata:
-#   name: auth-secrets
-# type: Opaque
-# data:
-#   jwt-access-secret: <access_secret>
-#   jwt-refresh-secret: <refresh_secret>
+apiVersion: v1
+kind: Secret
 
-# kubectl create secret generic auth-secrets \
+metadata:
+  name: auth
+  namespace: {{ .Values.namespace }}
+
+type: Opaque
+data:
+  jwt-access-secret: bXlfYWNjZXNz
+  jwt-refresh-secret: bXlfcmVmcmVzaA==
+
+# kubectl create secret generic auth \
 #   --from-literal=jwt-access-secret='access_secret' \
 #   --from-literal=jwt-refresh-secret='refresh_secret' \
 #   -n staging
 
+---
 ################### Database Deployment ###################
 apiVersion: apps/v1
 kind: Deployment
@@ -113,10 +117,10 @@ spec:
           resources:
             requests:
               memory: "128Mi"
-              cpu: "250m"
+              cpu: "100m"
             limits:
-              memory: "256Mi"
-              cpu: "500m"
+              memory: "128Mi"
+              cpu: "100m"
 ---
 ################### Database Service ###################
 apiVersion: v1
