@@ -1,0 +1,138 @@
+################### Deployment ###################
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: auth
+  namespace: {{ .Values.namespace }}
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth
+
+  template:
+    metadata:
+      labels:
+        app: auth
+
+    spec:
+      containers:
+        - name: auth
+          image: yessinerekik/auth-service:staging-ba115df29f2c0d99bc6127f937875caa513cebc8 # change me in the pipeline
+          ports:
+            - containerPort: 4000
+          envFrom:
+            - configMapRef:
+                name: auth
+          env:
+            - name: ACCESS_TOKEN_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: auth
+                  key: jwt-access-secret
+
+            - name: REFRESH_TOKEN_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: auth
+                  key: jwt-refresh-secret
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "100m"
+            limits:
+              memory: "64Mi"
+              cpu: "100m"
+
+---
+################### Service ###################
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: auth
+  namespace: {{ .Values.namespace }}
+
+spec:
+  selector:
+    app: auth
+  ports:
+    - port: 4000
+      targetPort: 4000
+
+---
+################### ConfigMap ###################
+apiVersion: v1
+kind: ConfigMap
+
+metadata:
+  name: auth
+  namespace: {{ .Values.namespace }}
+
+data:
+  PORT: "4000"
+  MONGODB_URI: mongodb://auth-database:27017/auth
+
+---
+apiVersion: v1
+kind: Secret
+
+metadata:
+  name: auth
+  namespace: {{ .Values.namespace }}
+
+type: Opaque
+data:
+  jwt-access-secret: bXlfYWNjZXNz
+  jwt-refresh-secret: bXlfcmVmcmVzaA==
+
+# kubectl create secret generic auth \
+#   --from-literal=jwt-access-secret='access_secret' \
+#   --from-literal=jwt-refresh-secret='refresh_secret' \
+#   -n staging
+
+---
+################### Database Deployment ###################
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-database
+  namespace: {{ .Values.namespace }}
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth-database
+  template:
+    metadata:
+      labels:
+        app: auth-database
+    spec:
+      containers:
+        - name: auth-database
+          image: mongo
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "128Mi"
+              cpu: "100m"
+---
+################### Database Service ###################
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: auth-database
+  namespace: {{ .Values.namespace }}
+
+spec:
+  selector:
+    app: auth-database
+  ports:
+    - port: 27017
+      targetPort: 27017

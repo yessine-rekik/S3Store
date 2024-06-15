@@ -1,0 +1,2 @@
+namespace: staging
+host: staging.s3store.com
