@@ -7,11 +7,11 @@ spec:
   project: default
   source:
     repoURL: git@github.com:yessine99/Homelab.git
-    path: /infra/k8s/chart
+    path: infra/k8s/chart
     targetRevision: staging
     helm:
       valueFiles:
-        - /values/staging.yml
+        - values/staging.yml
 
   destination:
     server: "https://kubernetes.default.svc"
