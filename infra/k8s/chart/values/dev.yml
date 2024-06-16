@@ -5,5 +5,4 @@ auth:
   image: yessinerekik/auth-service:dev
 
 client:
-  image: yessinerekik/client
-  tag: dev
+  image: yessinerekik/client:dev
