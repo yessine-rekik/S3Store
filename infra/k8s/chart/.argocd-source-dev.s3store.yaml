@@ -1,10 +1,10 @@
 helm:
   parameters:
   - name: image.name
-    value: yessinerekik/client
+    value: yessinerekik/auth-service
     forcestring: true
   - name: image.tag
-    value: dev@sha256:2b1eef94543fe924ba98aa12db396516d5872edfa9c21794c17c81816081f76c
+    value: dev@sha256:518339649655c5b854709b018d953c04b685d6e4089e6197158075a5758ba3fb
     forcestring: true
   - name: yessinerekik/client:dev
     value: yessinerekik/client@sha256:99d286f4fb3cc19374dba0d055b643252ef437fef987eecce570cdc369488140
