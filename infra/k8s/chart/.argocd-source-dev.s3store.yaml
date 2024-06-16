@@ -13,7 +13,7 @@ helm:
     value: yessinerekik/client
     forcestring: true
   - name: client.tag
-    value: dev@sha256:d49d53c584cbfcc513ed42d75290ea55a4e783bf58265d3b097faae880388ef6
+    value: dev@sha256:378e6d805026302048707882d49c2ac3f2d5d4621dc8de14fc049cc687028dde
     forcestring: true
   - name: auth.image
     value: yessinerekik/auth-service
