@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: client
-          image: {{ .Values.image.name }}:{{ .Values.image.tag }}
+          image: {{ .Values.client.image.name }}:{{ .Values.client.image.tag }}
           ports:
             - containerPort: 3000
           envFrom:
