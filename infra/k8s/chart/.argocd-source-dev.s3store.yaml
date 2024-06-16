@@ -9,3 +9,15 @@ helm:
   - name: yessinerekik/client:dev
     value: yessinerekik/client@sha256:99d286f4fb3cc19374dba0d055b643252ef437fef987eecce570cdc369488140
     forcestring: true
+  - name: client.image
+    value: yessinerekik/client
+    forcestring: true
+  - name: client.tag
+    value: dev@sha256:d49d53c584cbfcc513ed42d75290ea55a4e783bf58265d3b097faae880388ef6
+    forcestring: true
+  - name: auth.image
+    value: yessinerekik/auth-service
+    forcestring: true
+  - name: auth.tag
+    value: latest@sha256:518339649655c5b854709b018d953c04b685d6e4089e6197158075a5758ba3fb
+    forcestring: true
