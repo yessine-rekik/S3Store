@@ -4,7 +4,9 @@ metadata:
   name: {{.Values.name}}
   namespace: argocd
   annotations:
-    argocd-image-updater.argoproj.io/image-list: client={{ .Values.images }}
+    argocd-image-updater.argoproj.io/image-list: client=yessinerekik/client:dev
+    argocd-image-updater.argoproj.io/client.helm.image-name: client
+    argocd-image-updater.argoproj.io/client.helm.image-tag: dev
     argocd-image-updater.argoproj.io/client.update-strategy: digest
 
 spec:
