@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-of-apps
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:yessine99/Homelab.git
+    path: infra/k8s/app
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values/staging.yml
+        - values/prod.yml
+
+  destination:
+    server: "https://kubernetes.default.svc"
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
