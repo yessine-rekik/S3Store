@@ -6,7 +6,7 @@ metadata:
   annotations:
     argocd-image-updater.argoproj.io/image-list: |
       client={{.Values.images}}
-    argocd-image-updater.argoproj.io/client.helm.image-spec: {{.Values.client.image}}
+    argocd-image-updater.argoproj.io/client.helm.image-spec: {{.Values.images}}
     argocd-image-updater.argoproj.io/client.update-strategy: digest
 
 spec:
