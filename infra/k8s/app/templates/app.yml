@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{.Values.name}}
+  namespace: argocd
+  annotations:
+    argocd-image-updater/image-list: {{.Values.images}}
+
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:yessine99/Homelab.git
+    path: infra/k8s/chart
+    targetRevision: {{.Values.branch}}
+    helm:
+      valueFiles:
+        - {{.Values.valueFiles}}
+
+  destination:
+    server: "https://kubernetes.default.svc"
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
