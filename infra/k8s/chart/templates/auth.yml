@@ -8,6 +8,7 @@ metadata:
 
 spec:
   replicas: 1
+  revisionHistoryLimit: 0 # saving resources
   selector:
     matchLabels:
       app: auth
@@ -103,9 +104,11 @@ metadata:
 
 spec:
   replicas: 1
+  revisionHistoryLimit: 0 # saving resources
   selector:
     matchLabels:
       app: auth-database
+      
   template:
     metadata:
       labels:

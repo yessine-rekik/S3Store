@@ -8,6 +8,7 @@ metadata:
 
 spec:
   replicas: 1
+  revisionHistoryLimit: 0 # saving resources
   selector:
     matchLabels:
       app: client
