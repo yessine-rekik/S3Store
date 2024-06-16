@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: {{ .Values.image }}
+          image: {{ .Values.auth.image }}
           ports:
             - containerPort: 4000
           envFrom:

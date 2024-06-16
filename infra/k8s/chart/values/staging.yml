@@ -1,3 +1,8 @@
 namespace: staging
 host: staging.s3store.com
-image: yessinerekik/auth-service:staging-1
+
+auth:
+  image: yessinerekik/auth-service:staging-1
+
+client:
+  image: yessinerekik/client:staging-1
