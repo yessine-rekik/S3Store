@@ -20,6 +20,7 @@ spec:
     spec:
       containers:
         - name: auth
+          image: yessinerekik/auth-service:latest
           ports:
             - containerPort: 4000
           envFrom:
