@@ -8,6 +8,8 @@ metadata:
 
 spec:
   replicas: 1
+  revisionHistoryLimit: 3
+
   selector:
     matchLabels:
       app: auth
@@ -20,7 +22,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: {{ .Values.auth.image }}
+          image: {{ .Values.auth.image }}:{{ .Values.auth.tag }}
           ports:
             - containerPort: 4000
           envFrom:
@@ -103,9 +105,12 @@ metadata:
 
 spec:
   replicas: 1
+  revisionHistoryLimit: 3
+  
   selector:
     matchLabels:
       app: auth-database
+      
   template:
     metadata:
       labels:
