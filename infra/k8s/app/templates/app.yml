@@ -4,8 +4,10 @@ metadata:
   name: {{.Values.name}}
   namespace: argocd
   annotations:
-    argocd-image-updater.argoproj.io/image-list: {{ .Values.images }}
-    argocd-image-updater.argoproj.io/update-strategy: digest
+    argocd-image-updater.argoproj.io/image-list: |
+      client={{.Values.images}}
+    argocd-image-updater.argoproj.io/client.helm.image-spec: {{.Values.client.image}}
+    argocd-image-updater.argoproj.io/client.update-strategy: digest
 
 spec:
   project: default
