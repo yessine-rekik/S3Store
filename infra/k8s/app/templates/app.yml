@@ -4,7 +4,7 @@ metadata:
   name: {{.Values.name}}
   namespace: argocd
   annotations:
-    argocd-image-updater/image-list: {{.Values.images}}
+    argocd-image-updater.argoproj.io/image-list: {{.Values.images}}
 
 spec:
   project: default
