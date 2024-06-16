@@ -4,7 +4,7 @@ helm:
     value: yessinerekik/client
     forcestring: true
   - name: image.tag
-    value: dev@sha256:5a49f51af0d44ced93ec581b44d5430a794707038438f1ba8474e54dd6227258
+    value: dev@sha256:2b1eef94543fe924ba98aa12db396516d5872edfa9c21794c17c81816081f76c
     forcestring: true
   - name: yessinerekik/client:dev
     value: yessinerekik/client@sha256:99d286f4fb3cc19374dba0d055b643252ef437fef987eecce570cdc369488140
