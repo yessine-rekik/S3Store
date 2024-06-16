@@ -3,18 +3,19 @@ name: Auth Service Pipeline
 on:
   pull_request:
     paths:
-      - 'auth-service/**'
+      - "auth-service/**"
 
   push:
     branches:
       - master
       - staging
+      - dev
     paths:
-      - 'auth-service/**'
+      - "auth-service/**"
 
 jobs:
   call-reusable-pipeline:
     uses: ./.github/workflows/reusable-pipeline.yml
     with:
-      service-folder: 'auth-service'
+      service-folder: "auth-service"
     secrets: inherit
