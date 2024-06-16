@@ -1,0 +1,4 @@
+name: s3store
+images: "yessinerekik/client:*,yessinerekik/auth-service:*"
+branch: master
+valueFiles: values/prod.yml
