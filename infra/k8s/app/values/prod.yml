@@ -2,5 +2,3 @@ name: s3store
 images: "yessinerekik/client:prod"
 branch: master
 valueFiles: values/prod.yml
-destination:
-  namespace: prod

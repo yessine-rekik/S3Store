@@ -2,5 +2,3 @@ name: staging.s3store
 images: "yessinerekik/client:staging"
 branch: staging
 valueFiles: values/staging.yml
-destination:
-  namespace: staging

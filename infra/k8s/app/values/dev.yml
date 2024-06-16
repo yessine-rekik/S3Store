@@ -2,5 +2,3 @@ name: dev.s3store
 images: yessinerekik/client:dev
 branch: dev
 valueFiles: values/dev.yml
-destination:
-  namespace: dev

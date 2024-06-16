@@ -5,7 +5,7 @@ metadata:
   namespace: argocd
   annotations:
     argocd-image-updater.argoproj.io/image-list: {{ .Values.images }}
-    argocd-image-updater.argoproj.io/write-back-method: git
+    #argocd-image-updater.argoproj.io/write-back-method: git
     argocd-image-updater.argoproj.io/update-strategy: digest
 spec:
   project: default
@@ -19,7 +19,6 @@ spec:
 
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: {{.Values.destination.namespace}}
 
   syncPolicy:
     automated:
