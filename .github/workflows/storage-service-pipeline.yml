@@ -3,18 +3,19 @@ name: Storage Service Pipeline
 on:
   pull_request:
     paths:
-      - 'storage-service/**'
+      - "storage-service/**"
 
   push:
     branches:
       - master
       - staging
+      - dev
     paths:
-      - 'storage-service/**'
+      - "storage-service/**"
 
 jobs:
   call-reusable-pipeline:
     uses: ./.github/workflows/reusable-pipeline.yml
     with:
-      service-folder: 'storage-service'
+      service-folder: "storage-service"
     secrets: inherit
