@@ -4,11 +4,8 @@ metadata:
   name: {{.Values.name}}
   namespace: argocd
   annotations:
-    argocd-image-updater.argoproj.io/image-list: |
-      client={{.Values.images}}
-    argocd-image-updater.argoproj.io/client.helm.image-spec: {{.Values.images}}
-    argocd-image-updater.argoproj.io/client.update-strategy: digest
-
+    argocd-image-updater.argoproj.io/image-list: {{ .Values.images }}
+    argocd-image-updater.argoproj.io/write-back-method: git
 spec:
   project: default
   source:
