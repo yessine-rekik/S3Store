@@ -23,7 +23,7 @@ spec:
 
     - repoURL: git@github.com:yessine99/Homelab.git
       path: infra/k8s/app
-      targetRevision: prod
+      targetRevision: master
       helm:
         valueFiles:
           - values/prod.yml
