@@ -6,7 +6,7 @@ const Index = () => {
       <Head>
         <title>S3Store</title>
       </Head>
-      <h1>Welcome To Update S3Store !</h1>
+      <h1>Welcome To Update S3Store!</h1>
     </>
   );
 };
