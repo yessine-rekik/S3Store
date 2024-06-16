@@ -2,7 +2,7 @@ namespace: dev
 host: dev.s3store.com
 
 auth:
-  image: yessinerekik/auth-service:dev-c171f36252fa35cccf9850db07100ffb2e395a7a
+  image: yessinerekik/auth-service:dev
 
 client:
-  image: yessinerekik/client:dev-c171f36252fa35cccf9850db07100ffb2e395a7a
+  image: yessinerekik/client:dev

@@ -2,7 +2,7 @@ namespace: prod
 host: s3store.com
 
 auth:
-  image: yessinerekik/auth-service:prod-1
+  image: yessinerekik/auth-service:prod
 
 client:
-  image: yessinerekik/client:prod-1
+  image: yessinerekik/client:prod
