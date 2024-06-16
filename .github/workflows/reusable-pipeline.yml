@@ -60,9 +60,9 @@ jobs:
 
       - name: Set IMAGE_TAG
         run: echo "IMAGE_TAG=$(case ${{ github.ref_name }} in
-          master) echo prod-${{ github.sha }} ;;
-          staging) echo staging-${{ github.sha }} ;;
-          dev) echo dev-${{ github.sha}} ;;
+          master) echo prod ;;
+          staging) echo staging ;;
+          dev) echo dev ;;
           esac)" >> $GITHUB_ENV
 
       - name: Build Docker Image
