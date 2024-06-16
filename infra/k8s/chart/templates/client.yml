@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: client
-          image: yessinerekik/client:latest
+          image: {{ .Values.image }}
           ports:
             - containerPort: 3000
           envFrom:

@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: yessinerekik/auth-service:latest
+          image: {{ .Values.image }}
           ports:
             - containerPort: 4000
           envFrom:
