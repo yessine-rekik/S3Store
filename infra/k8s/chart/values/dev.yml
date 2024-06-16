@@ -4,5 +4,6 @@ host: dev.s3store.com
 auth:
   image: yessinerekik/auth-service:dev
 
-client:
-  image: yessinerekik/client:dev
+image:
+  name: yessinerekik/client
+  tag: dev
