@@ -1,4 +1,4 @@
-name: stagingApp
+name: staging.s3store
 images: "yessinerekik/client:staging-*,yessinerekik/auth-service:staging-*"
 branch: staging
 valueFiles: values/staging.yml

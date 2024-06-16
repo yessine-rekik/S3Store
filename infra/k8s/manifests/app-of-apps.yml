@@ -6,15 +6,27 @@ metadata:
 
 spec:
   project: default
-  source:
-    repoURL: git@github.com:yessine99/Homelab.git
-    path: infra/k8s/app
-    targetRevision: staging
-    helm:
-      valueFiles:
-        - values/staging.yml
-        - values/prod.yml
-        - values/dev.yml
+  sources:
+    - repoURL: git@github.com:yessine99/Homelab.git
+      path: infra/k8s/app
+      targetRevision: dev
+      helm:
+        valueFiles:
+          - values/dev.yml
+
+    - repoURL: git@github.com:yessine99/Homelab.git
+      path: infra/k8s/app
+      targetRevision: staging
+      helm:
+        valueFiles:
+          - values/staging.yml
+
+    - repoURL: git@github.com:yessine99/Homelab.git
+      path: infra/k8s/app
+      targetRevision: prod
+      helm:
+        valueFiles:
+          - values/prod.yml
 
   destination:
     server: "https://kubernetes.default.svc"
