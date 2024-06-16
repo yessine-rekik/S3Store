@@ -3,15 +3,13 @@ kind: Application
 metadata:
   name: app-of-apps
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 
 spec:
   project: default
   source:
     repoURL: git@github.com:yessine99/Homelab.git
     path: infra/k8s/app
-    targetRevision: HEAD
+    targetRevision: staging
     helm:
       valueFiles:
         - values/staging.yml
@@ -19,6 +17,7 @@ spec:
 
   destination:
     server: "https://kubernetes.default.svc"
+    namespace: argocd
 
   syncPolicy:
     automated:
