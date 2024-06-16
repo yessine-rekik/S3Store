@@ -1,4 +1,4 @@
-name: dev.s3store
+name: devApp
 images: "yessinerekik/client:staging-*,yessinerekik/auth-service:staging-*"
 branch: dev
 valueFiles: values/dev.yml
