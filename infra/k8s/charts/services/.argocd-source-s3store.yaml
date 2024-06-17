@@ -1,0 +1,14 @@
+helm:
+  parameters:
+  - name: client.image
+    value: yessinerekik/client
+    forcestring: true
+  - name: client.tag
+    value: prod@sha256:a92a02559f3ba0f996c52eaf6a668bae2baac497d31e0d8de5fe060b53676293
+    forcestring: true
+  - name: auth.image
+    value: yessinerekik/auth-service
+    forcestring: true
+  - name: auth.tag
+    value: prod@sha256:aae11cb238dccb166d5379226e7fec1281ef63e34694a8db599d99c66af25cd5
+    forcestring: true
