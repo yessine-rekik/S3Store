@@ -1,0 +1,5 @@
+127.0.0.1       dev.s3store.com
+127.0.0.1       staging.s3store.com
+127.0.0.1       s3store.com
+127.0.0.1       grafana.s3store.com
+127.0.0.1       argocd.s3store.com

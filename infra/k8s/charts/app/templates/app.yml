@@ -18,7 +18,7 @@ spec:
   project: default
   source:
     repoURL: git@github.com:yessine99/Homelab.git
-    path: infra/k8s/chart
+    path: infra/k8s/charts/services
     targetRevision: {{.Values.branch}}
     helm:
       valueFiles:
