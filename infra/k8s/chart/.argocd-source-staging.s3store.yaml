@@ -10,5 +10,5 @@ helm:
     value: yessinerekik/auth-service
     forcestring: true
   - name: auth.tag
-    value: staging-1@dummy
+    value: staging@dummy
     forcestring: true
