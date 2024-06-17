@@ -1,0 +1,4 @@
+name: dev.s3store
+images: client=yessinerekik/client:dev,auth=yessinerekik/auth-service:dev
+branch: dev
+valueFiles: values/dev.yml

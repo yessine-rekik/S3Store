@@ -1,10 +1,10 @@
-namespace: prod
-host: s3store.com
+namespace: dev
+host: dev.s3store.com
 
 auth:
   image: yessinerekik/auth-service
-  tag: prod
+  tag: dev
 
 client:
   image: yessinerekik/client
-  tag: prod
+  tag: dev
