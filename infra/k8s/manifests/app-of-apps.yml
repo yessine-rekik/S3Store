@@ -8,21 +8,21 @@ spec:
   project: default
   sources:
     - repoURL: git@github.com:yessine99/Homelab.git
-      path: infra/k8s/app
+      path: infra/k8s/charts/app
       targetRevision: dev
       helm:
         valueFiles:
           - values/dev.yml
 
     - repoURL: git@github.com:yessine99/Homelab.git
-      path: infra/k8s/app
+      path: infra/k8s/charts/app
       targetRevision: staging
       helm:
         valueFiles:
           - values/staging.yml
 
     - repoURL: git@github.com:yessine99/Homelab.git
-      path: infra/k8s/app
+      path: infra/k8s/charts/app
       targetRevision: master
       helm:
         valueFiles:
