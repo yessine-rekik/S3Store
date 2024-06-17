@@ -13,7 +13,7 @@ metadata:
     argocd-image-updater.argoproj.io/auth.helm.image-name: auth.image
     argocd-image-updater.argoproj.io/auth.helm.image-tag: auth.tag
 
-    argocd-image-updater.argoproj.io/write-back-method: git
+    #argocd-image-updater.argoproj.io/write-back-method: git # default argocd
     argocd-image-updater.argoproj.io/update-strategy: digest
 
 spec:
