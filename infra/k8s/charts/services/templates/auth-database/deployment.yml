@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-database
+  namespace: {{ .Values.namespace }}
+
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  
+  selector:
+    matchLabels:
+      app: auth-database
+      
+  template:
+    metadata:
+      labels:
+        app: auth-database
+    spec:
+      containers:
+        - name: auth-database
+          image: mongo
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "128Mi"
+              cpu: "100m"

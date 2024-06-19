@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: auth-database
+  namespace: {{ .Values.namespace }}
+
+spec:
+  selector:
+    app: auth-database
+  ports:
+    - port: 27017
+      targetPort: 27017
