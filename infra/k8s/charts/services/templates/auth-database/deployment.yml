@@ -16,10 +16,21 @@ spec:
     metadata:
       labels:
         app: auth-database
+
     spec:
+      volumes:
+        - name: mongodb-data
+          persistentVolumeClaim:
+            claimName: auth-database
+
       containers:
         - name: auth-database
           image: mongo
+
+          volumeMounts:
+            - name: mongodb-data
+              mountPath: /data/db # default path for monogdb data
+
           resources:
             requests:
               memory: "128Mi"
