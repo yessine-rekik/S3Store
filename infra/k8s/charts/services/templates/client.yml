@@ -64,26 +64,3 @@ metadata:
 
 data:
   NEXT_PUBLIC_ENV: {{ .Values.namespace }}
-
-
-################# Network Policy ##################
-apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
-metadata:
-  name: client
-  namespace: {{ .Values.namespace }}
-spec:
-  podSelector:
-    matchLabels:
-      app: client
-
-  policyTypes:
-  - Ingress
-
-  ingress:
-    - from:
-      - podSelector:
-          matchLabels:
-            app: ingress-service
-      ports:
-        - port: 3000

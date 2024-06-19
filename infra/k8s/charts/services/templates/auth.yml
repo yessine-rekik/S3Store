@@ -141,3 +141,27 @@ spec:
   ports:
     - port: 27017
       targetPort: 27017
+
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+
+metadata:
+  name: auth-database
+  namespace: {{.Values.namespace}}
+
+spec:
+  podSelector:
+    matchLabels:
+      app: auth-database
+
+  policyTypes:
+  - Ingress
+
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          app: auth 
