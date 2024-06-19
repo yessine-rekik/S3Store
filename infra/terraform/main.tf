@@ -89,5 +89,29 @@ resource "helm_release" "argocd-image-updater" {
   version    = "0.10.2"
 }
 
+// minikube start --cni calico
+// for EKS see:
+// https://docs.tigera.io/calico/latest/getting-started/kubernetes/managed-public-cloud/eks
+# resource "helm_release" "tigera-operator" {
+#   name             = "tigera-operator"
+#   repository       = "https://docs.tigera.io/calico/charts"
+#   chart            = "tigera-operator"
+#   namespace        = "tigera-operator"
+#   version          = "3.28.0"
+#   create_namespace = true
+#   # Type could be "Calico" or "AmazonVPC"
+#   values = [
+#     <<EOF
+#       {
+#         "spec": {
+#           "cni": {
+#             "type": "AmazonVPC" 
+#           }
+#         }
+#       }
+#     EOF
+#   ]
+# }
+
 
 
