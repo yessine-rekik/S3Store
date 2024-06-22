@@ -89,6 +89,16 @@ resource "helm_release" "argocd-image-updater" {
   version    = "0.10.2"
 }
 
+# minikube addons enable metrics-server
+# resource "helm_release" "metrics-server" {
+#   name       = "metrics-server"
+#   repository = "https://kubernetes-sigs.github.io/metrics-server"
+#   chart      = "metrics-server"
+#   namespace  = "kube-system"
+# }
+
+
+
 // minikube start --cni calico
 // for EKS see:
 // https://docs.tigera.io/calico/latest/getting-started/kubernetes/managed-public-cloud/eks
