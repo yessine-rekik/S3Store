@@ -1,0 +1,10 @@
+namespace: dev
+host: dev.s3store.com
+
+auth:
+  image: yessinerekik/auth-service
+  tag: dev
+
+client:
+  image: yessinerekik/client
+  tag: dev

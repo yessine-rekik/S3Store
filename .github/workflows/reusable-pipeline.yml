@@ -59,8 +59,11 @@ jobs:
         run: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
       - name: Set IMAGE_TAG
-        id: image_tag
-        run: echo "IMAGE_TAG=$([[ '${{ github.ref_name }}' == 'master' ]] && echo '${{ github.sha }}' || echo 'staging-${{ github.sha }}')" >> $GITHUB_ENV
+        run: echo "IMAGE_TAG=$(case ${{ github.ref_name }} in
+          master) echo prod ;;
+          staging) echo staging ;;
+          dev) echo dev ;;
+          esac)" >> $GITHUB_ENV
 
       - name: Build Docker Image
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/${{ inputs.service-folder }}:${{ env.IMAGE_TAG }} ./${{ inputs.service-folder }}

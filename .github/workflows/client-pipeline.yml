@@ -1,9 +1,9 @@
-name: Storage Service Pipeline
+name: Client Pipeline
 
 on:
   pull_request:
     paths:
-      - "storage-service/**"
+      - "client/**"
 
   push:
     branches:
@@ -11,11 +11,11 @@ on:
       - staging
       - dev
     paths:
-      - "storage-service/**"
+      - "client/**"
 
 jobs:
   call-reusable-pipeline:
     uses: ./.github/workflows/reusable-pipeline.yml
     with:
-      service-folder: "storage-service"
+      service-folder: "client"
     secrets: inherit

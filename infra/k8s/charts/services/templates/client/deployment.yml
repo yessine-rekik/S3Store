@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: client
+  namespace: {{ .Values.namespace }}
+
+spec:
+  revisionHistoryLimit: 1
+  
+  selector:
+    matchLabels:
+      app: client
+
+  template:
+    metadata:
+      labels:
+        app: client
+
+    spec:
+      containers:
+        - name: client
+          image: {{ .Values.client.image }}:{{ .Values.client.tag }}
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: client
+
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "100m"
+            limits:
+              memory: "64Mi"
+              cpu: "100m"

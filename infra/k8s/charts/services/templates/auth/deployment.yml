@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: auth
+  namespace: {{ .Values.namespace }}
+
+spec:
+  revisionHistoryLimit: 1
+
+  selector:
+    matchLabels:
+      app: auth
+
+  template:
+    metadata:
+      labels:
+        app: auth
+
+    spec:
+      containers:
+        - name: auth
+          image: {{ .Values.auth.image }}:{{ .Values.auth.tag }}
+          ports:
+            - containerPort: 4000
+          envFrom:
+            - configMapRef:
+                name: auth
+          env:
+            - name: ACCESS_TOKEN_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: auth
+                  key: jwt-access-secret
+
+            - name: REFRESH_TOKEN_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: auth
+                  key: jwt-refresh-secret
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "100m"
+            limits:
+              memory: "64Mi"
+              cpu: "100m"
