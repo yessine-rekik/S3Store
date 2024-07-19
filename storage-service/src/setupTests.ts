@@ -10,7 +10,7 @@ let mongoServer: MongoMemoryServer;
 
 beforeAll(async () => {
   mongoServer = await MongoMemoryServer.create();
-
+  config.ACCESS_TOKEN_SECRET = 'AZERTY';
   config.MONGODB_URI = mongoServer.getUri();
 
   await mongoose.connect(config.MONGODB_URI);
