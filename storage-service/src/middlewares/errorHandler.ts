@@ -7,7 +7,7 @@ export function errorHandler(
   res: Response,
   next: NextFunction
 ) {
-  logger.error(err.message);
+  logger.error(err.stack || err.message);
   res.status(500).send(err.message);
   next; // to satisfy ESLint
 }
