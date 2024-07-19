@@ -1,7 +1,16 @@
 import express from 'express';
 import { errorHandler } from './middlewares/errorHandler';
-import storageRouter from './routers/storage.router';
 import { logApiInfo } from './middlewares/logApiInfo';
+import storageRouter from './router/sotrage.router';
+
+declare global {
+  // eslint-disable-next-line
+  namespace Express {
+    interface Request {
+      userId?: string;
+    }
+  }
+}
 
 const app = express();
 

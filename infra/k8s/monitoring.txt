@@ -1,5 +1,0 @@
-helm upgrade --install staging.s3store chart -f chart/values/staging.yml
-
-
-
-

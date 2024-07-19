@@ -1,4 +1,3 @@
-################### Deployment ###################
 apiVersion: apps/v1
 kind: Deployment
 
@@ -7,8 +6,7 @@ metadata:
   namespace: {{ .Values.namespace }}
 
 spec:
-  replicas: 1
-  revisionHistoryLimit: 3
+  revisionHistoryLimit: 1
   
   selector:
     matchLabels:
@@ -36,31 +34,3 @@ spec:
             limits:
               memory: "64Mi"
               cpu: "100m"
-
----
-################### Service ###################
-apiVersion: v1
-kind: Service
-
-metadata:
-  name: client
-  namespace: {{ .Values.namespace }}
-
-spec:
-  selector:
-    app: client
-  ports:
-    - port: 3000
-      targetPort: 3000
-
----
-################### ConfigMap ###################
-apiVersion: v1
-kind: ConfigMap
-
-metadata:
-  name: client
-  namespace: {{ .Values.namespace }}
-
-data:
-  NEXT_PUBLIC_ENV: {{ .Values.namespace }}
