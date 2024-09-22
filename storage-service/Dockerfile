@@ -6,9 +6,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm install typescript@5.4.5
-
-RUN npm run build
+RUN npm install typescript@5.4.5 && npm run build
 
 ############# MAIN STAGE #############
 
@@ -21,6 +19,10 @@ COPY package.json .
 RUN npm install --omit=dev
 
 COPY --from=BuildStage /app/dist ./dist
+
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup && chown -R appuser:appgroup /app
+
+USER appuser
 
 EXPOSE 4001
 
