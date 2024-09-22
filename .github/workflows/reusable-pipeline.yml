@@ -68,5 +68,12 @@ jobs:
       - name: Build Docker Image
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/${{ inputs.service-folder }}:${{ env.IMAGE_TAG }} ./${{ inputs.service-folder }}
 
+      - name: Scan Docker Image with Trivy
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ secrets.DOCKER_USERNAME }}/${{ inputs.service-folder }}:${{ env.IMAGE_TAG }}
+          format: 'table'
+          exit-code: 'true'
+          
       - name: Push Docker Image
         run: docker push ${{ secrets.DOCKER_USERNAME }}/${{ inputs.service-folder }}:${{ env.IMAGE_TAG }}
