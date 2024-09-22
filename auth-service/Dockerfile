@@ -20,6 +20,10 @@ RUN npm install --omit=dev
 
 COPY --from=BuildStage /app/dist ./dist
 
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup && chown -R appuser:appgroup /app
+
+USER appuser
+
 EXPOSE 4001
 
 CMD ["npm","start"]
