@@ -14,5 +14,5 @@ app.get('/readyz', (req, res) => {
 });
 
 app.listen(config.PORT, () => {
-  logger.info(`🚀 Server is listening on PORT : ${config.PORT}!!!!`);
+  logger.info(`🚀 Server is listening on PORT : ${config.PORT}!!!!:::`);
 });
