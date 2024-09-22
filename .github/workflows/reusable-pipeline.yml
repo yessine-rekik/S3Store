@@ -31,7 +31,7 @@ jobs:
         with:
           image-ref: test-image
           format: 'table'
-          exit-code: 'true'
+          exit-code: '1'
 
   test:
     runs-on: ubuntu-latest
