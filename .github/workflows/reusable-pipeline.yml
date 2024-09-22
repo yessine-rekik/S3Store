@@ -23,6 +23,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
+      - name: Lint Dockerfile
+        uses: hadolint/hadolint-action@v2
+        with:
+          file: ${{ inputs.service-folder }}/Dockerfile
+
       - name: Build Docker Image
         run: docker build -t test-image ./${{ inputs.service-folder }}
 
